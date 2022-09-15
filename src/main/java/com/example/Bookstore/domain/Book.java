@@ -1,9 +1,9 @@
 package com.example.Bookstore.domain;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import org.hibernate.annotations.Type;
+
+import javax.persistence.*;
+import javax.websocket.ClientEndpoint;
 
 @Entity
 public class Book {
@@ -11,10 +11,15 @@ public class Book {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
+    @Column(length = 120)
     private String title;
+    @Column(length = 40)
     private String author;
+    @Column(name="release_year")
     private int year;
+    @Column(length = 17)
     private String isbn;
+    @Column(precision = 8, scale = 2)
     private double price;
 
     public Book() {}
