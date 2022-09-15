@@ -24,8 +24,8 @@ public class BookstoreApplication {
 		return (args) -> {
 			log.info("Creating and saving a few demo books.");
 
-			Book firstBook = new Book("12 Rules for Life", "Jordan Peterson", "9783442315536", 19.99);
-			Book secondBook = new Book("Atlas Shrugged", "Ayn Rand", "9780451132154", 9.99);
+			Book firstBook = new Book("12 Rules for Life", "Jordan Peterson", 2018, "9783442315536", 19.99);
+			Book secondBook = new Book("Atlas Shrugged", "Ayn Rand", 1957, "9780451132154", 9.99);
 
 			repository.save(firstBook);
 			repository.save(secondBook);
