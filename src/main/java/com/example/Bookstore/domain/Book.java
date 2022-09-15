@@ -1,9 +1,6 @@
 package com.example.Bookstore.domain;
 
-import org.hibernate.annotations.Type;
-
 import javax.persistence.*;
-import javax.websocket.ClientEndpoint;
 
 @Entity
 public class Book {
