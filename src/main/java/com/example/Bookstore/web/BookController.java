@@ -27,7 +27,7 @@ public class BookController {
     }
 
     @GetMapping("/delete/{id}")
-    public String deleteBook(@PathVariable("id") Long bookId, Model model) {
+    public String deleteBook(@PathVariable("id") Long bookId) {
         if (repository.existsById(bookId)) {
             repository.deleteById(bookId);
         }
