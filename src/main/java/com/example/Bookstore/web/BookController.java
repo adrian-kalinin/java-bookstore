@@ -34,17 +34,29 @@ public class BookController {
     @GetMapping("/book/create")
     public String createBook(Model model) {
         model.addAttribute("book", new Book());
-        return "addBook";
+        return "bookForm";
     }
 
-    @PostMapping("/book/create")
+    @PostMapping("/book/save")
     public String createBook(@Valid @ModelAttribute("book") Book newBook, BindingResult bindingResult) {
         if (bindingResult.hasErrors()) {
-            return "addBook";
+            return "bookForm";
         }
 
         repository.save(newBook);
         return "redirect:../booklist";
+    }
+
+    @GetMapping("/book/{id}/edit")
+    public String editBook(@PathVariable("id") Long bookId, Model model) {
+        Book book = repository.findById(bookId).orElse(null);
+
+        if (book != null) {
+            model.addAttribute("book", book);
+            return "bookForm";
+        }
+
+        return "redirect:../../booklist";
     }
 
     @GetMapping("/book/{id}/delete")
