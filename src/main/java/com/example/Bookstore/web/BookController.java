@@ -17,11 +17,11 @@ public class BookController {
 
     @GetMapping("/")
     public String index() {
-        return "redirect:booklist";
+        return "redirect:/booklist";
     }
 
     @GetMapping("/booklist")
-    public String bookstore(Model model) {
+    public String bookList(Model model) {
         model.addAttribute("books", repository.findAll());
         return "booklist";
     }
