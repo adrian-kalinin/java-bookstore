@@ -1,9 +1,7 @@
 package com.example.Bookstore.domain;
 
 import javax.persistence.*;
-import javax.validation.constraints.Size;
-import javax.validation.constraints.Max;
-import javax.validation.constraints.Min;
+import javax.validation.constraints.*;
 
 @Entity
 public class Book {
@@ -11,15 +9,17 @@ public class Book {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
+    @NotBlank
     @Size(max = 120)
     private String title;
+    @NotBlank
     @Size(max = 40)
     private String author;
     @Column(name="releaseYear")
     @Max(2100)
     @Min(0)
     private int year;
-    @Size(max = 17)
+    @Size(min = 10, max = 17)
     private String isbn;
     @Max(10000)
     @Min(0)
