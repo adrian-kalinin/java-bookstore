@@ -13,6 +13,11 @@ public class BookController {
     @Autowired
     private BookRepository repository;
 
+    @GetMapping("/")
+    public String index() {
+        return "redirect:booklist";
+    }
+
     @GetMapping("/booklist")
     public String bookstore(Model model) {
         model.addAttribute("books", repository.findAll());
