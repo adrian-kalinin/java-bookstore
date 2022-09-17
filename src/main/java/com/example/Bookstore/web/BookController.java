@@ -25,12 +25,12 @@ public class BookController {
         return "booklist";
     }
 
-    @GetMapping("/delete/{id}")
+    @GetMapping("/book/{id}/delete")
     public String deleteBook(@PathVariable("id") Long bookId) {
         if (repository.existsById(bookId)) {
             repository.deleteById(bookId);
         }
-        return "redirect:../booklist";
+        return "redirect:../../booklist";
     }
 
 }
