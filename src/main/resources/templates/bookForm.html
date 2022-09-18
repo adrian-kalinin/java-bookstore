@@ -2,7 +2,8 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Bookstore — New Book</title>
+    <title th:if="${book.id == null}">Bookstore — New Book</title>
+    <title th:if="${book.id != null}">Bookstore — Edit Book</title>
     <link type="text/css" rel="stylesheet" th:href="@{/css/bootstrap.min.css}" />
 </head>
 <body>
