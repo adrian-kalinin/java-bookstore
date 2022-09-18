@@ -3,17 +3,19 @@
 <head>
     <meta charset="UTF-8">
     <title>Bookstore</title>
+    <link type="text/css" rel="stylesheet" th:href="@{/css/bootstrap.min.css}" />
 </head>
 <body>
+<main class="container">
     <h1>Books</h1>
-    <table>
+    <table class="table table-striped border">
         <thead>
             <tr>
                 <th>Title</th>
                 <th>Author</th>
                 <th>Year</th>
                 <th>ISBN</th>
-                <th>price</th>
+                <th>Price</th>
                 <th></th>
                 <th></th>
             </tr>
@@ -25,11 +27,12 @@
                 <td th:text="${book.year}"></td>
                 <td th:text="${book.isbn}"></td>
                 <td th:text="${book.price}"></td>
-                <td><a th:href="@{/book/{id}/edit(id=${book.id})}">Edit</a></td>
-                <td><a th:href="@{/book/{id}/delete(id=${book.id})}">Delete</a></td>
+                <td><a th:href="@{/book/{id}/edit(id=${book.id})}" class="btn btn-primary">Edit</a></td>
+                <td><a th:href="@{/book/{id}/delete(id=${book.id})}" class="btn btn-danger">Delete</a></td>
             </tr>
         </tbody>
     </table>
-    <p><a th:href="@{/book/create}">New book</a></p>
+    <p><a th:href="@{/book/create}" class="btn btn-success">New book</a></p>
+</main>
 </body>
 </html>
