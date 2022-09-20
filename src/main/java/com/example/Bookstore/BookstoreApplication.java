@@ -28,9 +28,15 @@ public class BookstoreApplication {
 
             Category firstCategory = new Category("Self-help");
             Category secondCategory = new Category("Novel");
+            Category thirdCategory = new Category("Fantasy");
+            Category fourthCategory = new Category("Mystery");
+            Category fifthCategory = new Category("Romance");
 
             categoryRepository.save(firstCategory);
             categoryRepository.save(secondCategory);
+            categoryRepository.save(thirdCategory);
+            categoryRepository.save(fourthCategory);
+            categoryRepository.save(fifthCategory);
 
             Book firstBook = new Book("12 Rules for Life", "Jordan Peterson", 2018, "978-34-42315-53-6", 19.99, firstCategory);
             Book secondBook = new Book("Atlas Shrugged", "Ayn Rand", 1957, "978-04-51132-15-4", 9.99, secondCategory);
