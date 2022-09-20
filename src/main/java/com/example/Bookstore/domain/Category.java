@@ -14,13 +14,13 @@ public class Category {
     @NotBlank
     @Size(max = 40)
     private String name;
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "category")
+    private List<Book> books;
 
     public Category() {
-
     }
 
-    public Category(Long id, String name) {
-        this.id = id;
+    public Category(String name) {
         this.name = name;
     }
 
@@ -40,9 +40,12 @@ public class Category {
         this.name = name;
     }
 
-    @Override
-    public String toString() {
-        return "Category[id='" + id + "', name='" + name + "']";
+    public List<Book> getBooks() {
+        return books;
+    }
+
+    public void setBooks(List<Book> books) {
+        this.books = books;
     }
 
 }

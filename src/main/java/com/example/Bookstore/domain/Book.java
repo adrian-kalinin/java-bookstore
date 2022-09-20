@@ -18,7 +18,7 @@ public class Book {
     @NotBlank
     @Size(max = 40)
     private String author;
-    @Column(name = "releaseYear")
+    @Column(name = "release_year")
     @Max(2100)
     @Min(0)
     private int year;
@@ -27,16 +27,20 @@ public class Book {
     @Max(10000)
     @Min(0)
     private double price;
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "category_id")
+    private Category category;
 
     public Book() {
     }
 
-    public Book(String title, String author, int year, String isbn, double price) {
+    public Book(String title, String author, int year, String isbn, double price, Category category) {
         this.title = title;
         this.author = author;
         this.year = year;
         this.isbn = isbn;
         this.price = price;
+        this.category = category;
     }
 
     public Long getId() {
@@ -87,9 +91,12 @@ public class Book {
         this.price = price;
     }
 
-    @Override
-    public String toString() {
-        return "Book [id= " + id + ", title='" + title + "', author='" + author + "', year='" + this.year + "', isbn=" + isbn + ", price=" + price + "]";
+    public Category getCategory() {
+        return category;
+    }
+
+    public void setCategory(Category category) {
+        this.category = category;
     }
 
 }
