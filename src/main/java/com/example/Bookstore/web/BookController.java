@@ -2,6 +2,7 @@ package com.example.Bookstore.web;
 
 import com.example.Bookstore.domain.Book;
 import com.example.Bookstore.domain.BookRepository;
+import com.example.Bookstore.domain.CategoryRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -12,12 +13,15 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
 import javax.validation.Valid;
+import java.text.AttributedString;
 
 @Controller
 public class BookController {
 
     @Autowired
-    private BookRepository repository;
+    private BookRepository bookRepository;
+    @Autowired
+    private CategoryRepository categoryRepository;
 
     @GetMapping("/")
     public String index() {
@@ -26,32 +30,35 @@ public class BookController {
 
     @GetMapping("/booklist")
     public String bookList(Model model) {
-        model.addAttribute("books", repository.findAll());
+        model.addAttribute("books", bookRepository.findAll());
         return "bookList";
     }
 
     @GetMapping("/book/create")
     public String createBook(Model model) {
         model.addAttribute("book", new Book());
+        model.addAttribute("categories", categoryRepository.findAll());
         return "bookForm";
     }
 
     @PostMapping("/book/save")
-    public String createBook(@Valid @ModelAttribute("book") Book book, BindingResult bindingResult) {
+    public String createBook(@Valid @ModelAttribute("book") Book book, BindingResult bindingResult, Model model) {
         if (bindingResult.hasErrors()) {
+            model.addAttribute("categories", categoryRepository.findAll());
             return "bookForm";
         }
 
-        repository.save(book);
+        bookRepository.save(book);
         return "redirect:../booklist";
     }
 
     @GetMapping("/book/{id}/edit")
     public String editBook(@PathVariable("id") Long bookId, Model model) {
-        Book book = repository.findById(bookId).orElse(null);
+        Book book = bookRepository.findById(bookId).orElse(null);
 
         if (book != null) {
             model.addAttribute("book", book);
+            model.addAttribute("categories", categoryRepository.findAll());
             return "bookForm";
         }
 
@@ -60,8 +67,8 @@ public class BookController {
 
     @GetMapping("/book/{id}/delete")
     public String deleteBook(@PathVariable("id") Long bookId) {
-        if (repository.existsById(bookId)) {
-            repository.deleteById(bookId);
+        if (bookRepository.existsById(bookId)) {
+            bookRepository.deleteById(bookId);
         }
         return "redirect:../../booklist";
     }
