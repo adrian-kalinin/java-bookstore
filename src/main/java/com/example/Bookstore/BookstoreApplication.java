@@ -11,6 +11,8 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 
+import java.util.List;
+
 @SpringBootApplication
 public class BookstoreApplication {
     private static final Logger log = LoggerFactory.getLogger(BookstoreApplication.class);
@@ -24,23 +26,29 @@ public class BookstoreApplication {
         return (args) -> {
             log.info("Creating and saving a few demo books.");
 
-            Category firstCategory = new Category("Self-help");
-            Category secondCategory = new Category("Novel");
-            Category thirdCategory = new Category("Fantasy");
-            Category fourthCategory = new Category("Mystery");
-            Category fifthCategory = new Category("Romance");
+            // Create categories
 
-            categoryRepository.save(firstCategory);
-            categoryRepository.save(secondCategory);
-            categoryRepository.save(thirdCategory);
-            categoryRepository.save(fourthCategory);
-            categoryRepository.save(fifthCategory);
+            List<Category> categoryList = List.of(
+                new Category("Self-help"),
+                new Category("Novel"),
+                new Category("Fantasy"),
+                new Category("Mystery"),
+                new Category("Romance")
+            );
 
-            Book firstBook = new Book("12 Rules for Life", "Jordan Peterson", 2018, "978-34-42315-53-6", 19.99, firstCategory);
-            Book secondBook = new Book("Atlas Shrugged", "Ayn Rand", 1957, "978-04-51132-15-4", 9.99, secondCategory);
+            categoryRepository.saveAll(categoryList);
 
-            bookRepository.save(firstBook);
-            bookRepository.save(secondBook);
+            // Create books
+
+            Category selfhelp = categoryRepository.findById(1L).orElse(null);
+            Category novel = categoryRepository.findById(2L).orElse(null);
+
+            List<Book> bookList = List.of(
+                new Book("12 Rules for Life", "Jordan Peterson", 2018, "978-34-42315-53-6", 19.99, selfhelp),
+                new Book("Atlas Shrugged", "Ayn Rand", 1957, "978-04-51132-15-4", 9.99, novel)
+            );
+
+            bookRepository.saveAll(bookList);
         };
     }
 
