@@ -99,4 +99,16 @@ public class Book {
         this.category = category;
     }
 
+    @Override
+    public String toString() {
+        return "Book{" +
+                "id=" + id +
+                ", title='" + title + '\'' +
+                ", author='" + author + '\'' +
+                ", year=" + year +
+                ", isbn='" + isbn + '\'' +
+                ", price=" + price +
+                ", category=" + category +
+                '}';
+    }
 }
