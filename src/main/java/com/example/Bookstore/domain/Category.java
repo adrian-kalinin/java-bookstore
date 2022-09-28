@@ -1,5 +1,7 @@
 package com.example.Bookstore.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
@@ -14,6 +16,7 @@ public class Category {
     @NotBlank
     @Size(max = 40)
     private String name;
+    @JsonIgnore
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "category")
     private List<Book> books;
 
@@ -50,11 +53,7 @@ public class Category {
 
     @Override
     public String toString() {
-        return "Category{" +
-                "id=" + id +
-                ", name='" + name + '\'' +
-                ", books=" + books +
-                '}';
+        return "Category{" + "id=" + id + ", name='" + name + '\'' + ", books=" + books + '}';
     }
 
 }
