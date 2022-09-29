@@ -16,12 +16,12 @@ public class APIController {
     @Autowired
     private BookRepository bookRepository;
 
-    @GetMapping("/api/books")
+    @GetMapping("/_/books")
     public List<Book> listBooks() {
         return (List<Book>) bookRepository.findAll();
     }
 
-    @GetMapping("/api/book/{id}")
+    @GetMapping("/_/book/{id}")
     public Optional<Book> getBookById(@PathVariable(name = "id") Long bookId) {
         return bookRepository.findById(bookId);
     }
