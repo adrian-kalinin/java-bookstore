@@ -22,9 +22,9 @@ public class BookController {
     @Autowired
     private CategoryRepository categoryRepository;
 
-    @GetMapping("/")
-    public String index() {
-        return "redirect:/booklist";
+    @GetMapping("/login")
+    public String login() {
+        return "login";
     }
 
     @GetMapping("/booklist")
