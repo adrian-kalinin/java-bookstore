@@ -1,45 +1,56 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
 <head>
     <meta charset="UTF-8">
     <title th:if="${book.id == null}">Bookstore — New Book</title>
     <title th:if="${book.id != null}">Bookstore — Edit Book</title>
     <link type="text/css" rel="stylesheet" th:href="@{/css/bootstrap.min.css}"/>
+    <script th:src="@{/js/bootstrap.min.js}"></script>
 </head>
 <body>
-<main class="container">
-    <h1 th:if="${book.id == null}">New Book</h1>
-    <h1 th:if="${book.id != null}">Edit Book</h1>
-    <form action="#" th:action="@{/book/save}" th:object="${book}" method="post">
+<header>
+    <nav class="navbar navbar-dark bg-primary">
+        <div class="container">
+            <span th:inline="text" class="navbar-brand">Hello, [[${#httpServletRequest.remoteUser}]]!</span>
+            <form th:action="@{/logout}" method="post">
+                <button type="submit" class="btn btn-link text-white">Sign Out</button>
+            </form>
+        </div>
+    </nav>
+</header>
+<main class="container mt-3">
+    <h1 th:if="${book.id == null}" class="mb-3">New Book</h1>
+    <h1 th:if="${book.id != null}" class="mb-3">Edit Book</h1>
+    <form th:action="@{/book/save}" th:object="${book}" method="post">
         <input th:if="${book.id != null}" th:field="*{id}" type="hidden"/>
-        <div class="form-group">
-            <label for="title">Title</label>
+        <div class="mb-3">
+            <label for="title" class="form-label">Title</label>
             <input id="title" class="form-control" th:field="*{title}" type="text"/>
             <span th:if="${#fields.hasErrors('title')}" th:errors="*{title}">Error</span>
         </div>
-        <div class="form-group">
-            <label for="author">Author</label>
+        <div class="mb-3">
+            <label for="author" class="form-label">Author</label>
             <input id="author" class="form-control" th:field="*{author}" type="text"/>
             <span th:if="${#fields.hasErrors('author')}" th:errors="*{author}">Error</span>
         </div>
-        <div class="form-group">
-            <label for="year">Year</label>
+        <div class="mb-3">
+            <label for="year" class="form-label">Year</label>
             <input id="year" class="form-control" th:field="*{year}" type="number" min="0" max="2100" step="1"/>
             <span th:if="${#fields.hasErrors('year')}" th:errors="*{year}">Error</span>
         </div>
-        <div class="form-group">
-            <label for="isbn">ISBN</label>
+        <div class="mb-3">
+            <label for="isbn" class="form-label">ISBN</label>
             <input id="isbn" class="form-control" th:field="*{isbn}" type="text"/>
             <span th:if="${#fields.hasErrors('isbn')}" th:errors="*{isbn}">Error</span>
         </div>
-        <div class="form-group">
-            <label for="price">Price</label>
+        <div class="mb-3">
+            <label for="price" class="form-label">Price</label>
             <input id="price" class="form-control" th:field="*{price}" type="number" min="0.00" max="10000.00"
                    step="0.01"/>
             <span th:if="${#fields.hasErrors('price')}" th:errors="*{price}">Error</span>
         </div>
-        <div class="form-group">
-            <label for="category">Category</label>
+        <div class="mb-3">
+            <label for="category" class="form-label">Category</label>
             <select id="category" class="form-control" th:field="*{category}">
                 <option th:each="category: ${categories}" th:value="${category.id}" th:text="${category.name}"></option>
             </select>

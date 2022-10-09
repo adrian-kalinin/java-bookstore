@@ -1,13 +1,24 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
 <head>
     <meta charset="UTF-8">
     <title>Bookstore</title>
     <link type="text/css" rel="stylesheet" th:href="@{/css/bootstrap.min.css}"/>
+    <script th:src="@{/js/bootstrap.min.js}"></script>
 </head>
 <body>
-<main class="container">
-    <h1>Books</h1>
+<header>
+    <nav class="navbar navbar-dark bg-primary">
+        <div class="container">
+            <span th:inline="text" class="navbar-brand">Hello, [[${#httpServletRequest.remoteUser}]]!</span>
+            <form th:action="@{/logout}" method="post">
+                <button type="submit" class="btn btn-link text-white">Sign Out</button>
+            </form>
+        </div>
+    </nav>
+</header>
+<main class="container pt-3">
+    <h1 class="mb-3">Books</h1>
     <table class="table table-striped border">
         <thead>
         <tr>
