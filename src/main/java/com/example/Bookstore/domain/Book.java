@@ -1,32 +1,30 @@
 package com.example.Bookstore.domain;
 
 import javax.persistence.*;
-import javax.validation.constraints.Max;
-import javax.validation.constraints.Min;
-import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.Size;
 
 @Entity
+@Table(name = "books")
 public class Book {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
-    @NotBlank
-    @Size(max = 120)
+
+    @Column(name = "title", length = 120, nullable = false)
     private String title;
-    @NotBlank
-    @Size(max = 40)
+
+    @Column(name = "author", length = 60, nullable = false)
     private String author;
+
     @Column(name = "release_year")
-    @Max(2100)
-    @Min(0)
     private int year;
-    @Size(min = 10, max = 17)
+
+    @Column(name = "isbn", length = 17)
     private String isbn;
-    @Max(10000)
-    @Min(0)
+
+    @Column(name = "price")
     private double price;
+
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "category_id")
     private Category category;
@@ -101,14 +99,6 @@ public class Book {
 
     @Override
     public String toString() {
-        return "Book{" +
-                "id=" + id +
-                ", title='" + title + '\'' +
-                ", author='" + author + '\'' +
-                ", year=" + year +
-                ", isbn='" + isbn + '\'' +
-                ", price=" + price +
-                ", category=" + category +
-                '}';
+        return "Book{" + "id=" + id + ", title='" + title + '\'' + ", author='" + author + '\'' + ", year=" + year + ", isbn='" + isbn + '\'' + ", price=" + price + ", category=" + category + '}';
     }
 }
