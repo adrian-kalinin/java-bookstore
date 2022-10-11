@@ -1,9 +1,6 @@
 package com.example.Bookstore;
 
-import com.example.Bookstore.domain.Book;
-import com.example.Bookstore.domain.BookRepository;
-import com.example.Bookstore.domain.Category;
-import com.example.Bookstore.domain.CategoryRepository;
+import com.example.Bookstore.domain.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.boot.CommandLineRunner;
@@ -22,33 +19,30 @@ public class BookstoreApplication {
     }
 
     @Bean
-    public CommandLineRunner bookDemo(CategoryRepository categoryRepository, BookRepository bookRepository) {
+    public CommandLineRunner bookDemo(CategoryRepository categoryRepository, BookRepository bookRepository, UserRepository userRepository) {
         return (args) -> {
-            log.info("Creating and saving a few demo books.");
+            log.info("Creating and saving demo data.");
 
             // Create categories
-
-            List<Category> categoryList = List.of(
-                new Category("Self-help"),
-                new Category("Novel"),
-                new Category("Fantasy"),
-                new Category("Mystery"),
-                new Category("Romance")
-            );
-
-            categoryRepository.saveAll(categoryList);
+            categoryRepository.saveAll(List.of(
+                    new Category("Self-help"),
+                    new Category("Novel"),
+                    new Category("Fantasy"),
+                    new Category("Mystery"),
+                    new Category("Romance")
+            ));
 
             // Create books
+            bookRepository.saveAll(List.of(
+                    new Book("12 Rules for Life", "Jordan Peterson", 2018, "978-34-42315-53-6", 19.99, categoryRepository.findById(1L).orElse(null)),
+                    new Book("Atlas Shrugged", "Ayn Rand", 1957, "978-04-51132-15-4", 9.99, categoryRepository.findById(2L).orElse(null))
+            ));
 
-            Category selfhelp = categoryRepository.findById(1L).orElse(null);
-            Category novel = categoryRepository.findById(2L).orElse(null);
-
-            List<Book> bookList = List.of(
-                new Book("12 Rules for Life", "Jordan Peterson", 2018, "978-34-42315-53-6", 19.99, selfhelp),
-                new Book("Atlas Shrugged", "Ayn Rand", 1957, "978-04-51132-15-4", 9.99, novel)
-            );
-
-            bookRepository.saveAll(bookList);
+            // Create users
+            userRepository.saveAll(List.of(
+                    new User("user", "$2a$06$3jYRJrg0ghaaypjZ/.g4SethoeA51ph3UD4kZi9oPkeMTpjKU5uo6", "user@example.com", "USER"),
+                    new User("admin", "$2a$10$0MMwY.IQqpsVc1jC8u7IJ.2rT8b0Cd3b3sfIBGV2zfgnPGtT4r0.C", "admin@example.com", "ADMIN")
+            ));
         };
     }
 
