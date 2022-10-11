@@ -75,7 +75,7 @@ public class BookController {
     }
 
     @GetMapping("/book/{id}/delete")
-    @PreAuthorize("hasRole('ADMIN')")
+    @PreAuthorize("hasAuthority('ADMIN')")
     public String deleteBook(@PathVariable("id") Long bookId) {
         if (bookRepository.existsById(bookId)) {
             bookRepository.deleteById(bookId);
