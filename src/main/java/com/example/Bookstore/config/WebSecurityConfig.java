@@ -16,8 +16,12 @@ import org.springframework.security.web.SecurityFilterChain;
 @EnableGlobalMethodSecurity(prePostEnabled = true)
 public class WebSecurityConfig {
 
+    private final UserDetailServiceImpl userDetailsService;
+
     @Autowired
-    private UserDetailServiceImpl userDetailsService;
+    public WebSecurityConfig(UserDetailServiceImpl userDetailsService) {
+        this.userDetailsService = userDetailsService;
+    }
 
     @Bean
     protected SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {

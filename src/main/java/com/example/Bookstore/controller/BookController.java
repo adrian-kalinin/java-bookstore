@@ -18,10 +18,14 @@ import javax.validation.Valid;
 @Controller
 public class BookController {
 
+    private final BookRepository bookRepository;
+    private final CategoryRepository categoryRepository;
+
     @Autowired
-    private BookRepository bookRepository;
-    @Autowired
-    private CategoryRepository categoryRepository;
+    public BookController(BookRepository bookRepository, CategoryRepository categoryRepository) {
+        this.bookRepository = bookRepository;
+        this.categoryRepository = categoryRepository;
+    }
 
     @GetMapping("/login")
     public String login() {

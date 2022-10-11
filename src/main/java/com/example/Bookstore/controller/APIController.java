@@ -13,8 +13,12 @@ import java.util.Optional;
 @RestController
 public class APIController {
 
+    private final BookRepository bookRepository;
+    
     @Autowired
-    private BookRepository bookRepository;
+    public APIController(BookRepository bookRepository) {
+        this.bookRepository = bookRepository;
+    }
 
     @GetMapping("/api/v1/books")
     public List<Book> listBooks() {
