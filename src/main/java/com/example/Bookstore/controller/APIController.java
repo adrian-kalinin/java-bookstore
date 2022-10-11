@@ -1,7 +1,7 @@
-package com.example.Bookstore.web;
+package com.example.Bookstore.controller;
 
-import com.example.Bookstore.domain.Book;
-import com.example.Bookstore.domain.BookRepository;
+import com.example.Bookstore.model.Book;
+import com.example.Bookstore.repository.BookRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;

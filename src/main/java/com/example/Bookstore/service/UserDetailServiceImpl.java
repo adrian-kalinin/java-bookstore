@@ -1,7 +1,7 @@
-package com.example.Bookstore.services;
+package com.example.Bookstore.service;
 
-import com.example.Bookstore.domain.User;
-import com.example.Bookstore.domain.UserRepository;
+import com.example.Bookstore.model.User;
+import com.example.Bookstore.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.AuthorityUtils;

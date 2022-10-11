@@ -1,5 +1,6 @@
-package com.example.Bookstore.domain;
+package com.example.Bookstore.repository;
 
+import com.example.Bookstore.model.Book;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.data.repository.query.Param;
 import org.springframework.data.rest.core.annotation.RepositoryRestResource;

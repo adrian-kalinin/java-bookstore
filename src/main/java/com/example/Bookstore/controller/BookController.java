@@ -1,8 +1,8 @@
-package com.example.Bookstore.web;
+package com.example.Bookstore.controller;
 
-import com.example.Bookstore.domain.Book;
-import com.example.Bookstore.domain.BookRepository;
-import com.example.Bookstore.domain.CategoryRepository;
+import com.example.Bookstore.model.Book;
+import com.example.Bookstore.repository.BookRepository;
+import com.example.Bookstore.repository.CategoryRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
