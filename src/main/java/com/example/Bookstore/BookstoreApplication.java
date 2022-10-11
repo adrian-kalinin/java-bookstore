@@ -1,6 +1,8 @@
 package com.example.Bookstore;
 
-import com.example.Bookstore.model.*;
+import com.example.Bookstore.model.Book;
+import com.example.Bookstore.model.Category;
+import com.example.Bookstore.model.User;
 import com.example.Bookstore.repository.BookRepository;
 import com.example.Bookstore.repository.CategoryRepository;
 import com.example.Bookstore.repository.UserRepository;
