@@ -30,6 +30,7 @@ public class WebSecurityConfig {
                 .authorizeRequests((request) -> request
                         .antMatchers("/css/**").permitAll()
                         .antMatchers("/js/**").permitAll()
+                        .antMatchers("/register").permitAll()
                         .anyRequest().authenticated()
                 )
                 .formLogin((form) -> form

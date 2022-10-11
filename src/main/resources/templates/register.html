@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>Bookstore — Sign Up</title>
+  <link type="text/css" rel="stylesheet" th:href="@{/css/bootstrap.min.css}"/>
+  <script th:src="@{/js/bootstrap.min.js}"></script>
+</head>
+<body>
+<header>
+  <nav class="navbar navbar-dark bg-primary">
+    <div class="container">
+      <span class="navbar-brand">Bookstore</span>
+    </div>
+  </nav>
+</header>
+<main class="container pt-3">
+  <h1 class="mb-3">Create a new account</h1>
+  <form th:action="@{/register}" th:object="${user}" method="post">
+    <div class="mb-3">
+      <label for="username" class="form-label">Username</label>
+      <input id="username" class="form-control" th:field="*{username}" type="text"/>
+      <span th:if="${#fields.hasErrors('username')}" th:errors="*{username}">Error</span>
+    </div>
+    <div class="mb-3">
+      <label for="email" class="form-label">Email</label>
+      <input id="email" class="form-control" th:field="*{email}" type="text"/>
+      <span th:if="${#fields.hasErrors('email')}" th:errors="*{email}">Error</span>
+    </div>
+    <div class="mb-3">
+      <label for="password" class="form-label">Password</label>
+      <input id="password" class="form-control" th:field="*{password}" type="text"/>
+      <span th:if="${#fields.hasErrors('password')}" th:errors="*{password}">Error</span>
+    </div>
+    <p class=mb-3><a th:href="@{/login}">Already have an account?</a></p>
+    <button type="submit" class="btn btn-success">Sign In</button>
+  </form>
+</main>
+</body>
+</html>
