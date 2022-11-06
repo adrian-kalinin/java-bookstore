@@ -12,6 +12,7 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Profile;
 
 import java.util.List;
 
@@ -24,6 +25,7 @@ public class BookstoreApplication {
     }
 
     @Bean
+    @Profile("!test")
     public CommandLineRunner bookDemo(CategoryRepository categoryRepository, BookRepository bookRepository, UserRepository userRepository) {
         return (args) -> {
             log.info("Creating and saving demo data.");
