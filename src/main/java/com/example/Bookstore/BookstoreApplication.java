@@ -25,7 +25,7 @@ public class BookstoreApplication {
     }
 
     @Bean
-    @Profile("!test")
+    @Profile({"dev & !test"})
     public CommandLineRunner bookDemo(CategoryRepository categoryRepository, BookRepository bookRepository, UserRepository userRepository) {
         return (args) -> {
             log.info("Creating and saving demo data.");
