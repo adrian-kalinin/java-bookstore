@@ -27,6 +27,11 @@ public class BookController {
         this.categoryRepository = categoryRepository;
     }
 
+    @GetMapping("/")
+    public String index() {
+        return "redirect:/booklist";
+    }
+
     @GetMapping("/booklist")
     public String bookList(Model model) {
         model.addAttribute("books", bookRepository.findAll());
